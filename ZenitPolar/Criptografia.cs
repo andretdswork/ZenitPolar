@@ -24,20 +24,15 @@ namespace ZenitPolar
             return _strZenite.Contains(char.ToLower(letra)) || _strPolar.Contains(char.ToLower(letra));
         }
 
-        private int posicaoLetraZenit(char letra)
+        private int getPosicaoLetra(char letra, string palavra)
         {
-            return _strZenite.IndexOf(char.ToLower(letra));
-        }
-
-        private int posicaoLetraPolar(char letra)
-        {
-            return _strPolar.IndexOf(char.ToLower(letra));
-        }
+            return palavra.IndexOf(char.ToLower(letra));
+        }        
 
         private char TrocarLetra(char letra)
         {
-            int posicaoLetraZenit = this.posicaoLetraZenit(letra);
-            int posicaoLetraPolar = this.posicaoLetraPolar(letra);
+            int posicaoLetraZenit = getPosicaoLetra(letra, _strZenite);
+            int posicaoLetraPolar = getPosicaoLetra(letra, _strPolar);
             return ExisteLetra(letra) ? (posicaoLetraPolar >= 0 ? _strZenite[posicaoLetraPolar] : _strPolar[posicaoLetraZenit]) : letra;          
         }
 
@@ -45,7 +40,7 @@ namespace ZenitPolar
         {
             string frase = string.Empty;
             for (int i = 0; i < _tamanhoFrase; i++)
-            {              
+            {
                 frase += TrocarLetra(_frase[i]);
             }
             return frase;
