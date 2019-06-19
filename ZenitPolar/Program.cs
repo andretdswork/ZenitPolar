@@ -45,8 +45,6 @@ namespace ZenitPolar
 
         private static void Descriptografar(string frase)
         {
-            //letras = frase.ToCharArray();
-
             for (int i = 0; i < letras.Length; i++)
             {                
                 if (ExisteLetra(letras[i]))
