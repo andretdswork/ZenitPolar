@@ -8,15 +8,16 @@ namespace ZenitPolar
 {
     public class Criptografia
     {        
-        private string _frase { get; set; }
+        private string _fraseCriptografada;
+        private string _fraseDescriptografada = string.Empty;
         private int _tamanhoFrase;
         private string _strZenite = "zenit";
         private string _strPolar = "polar";
 
         public Criptografia(string frase)
-        {            
-            _frase = frase;
-            _tamanhoFrase = frase.Length;
+        {
+            _fraseCriptografada = frase;
+            _tamanhoFrase = frase.Length;            
         }
 
         private bool ExisteLetra(char letra)
@@ -41,19 +42,18 @@ namespace ZenitPolar
             string frase = string.Empty;
             for (int i = 0; i < _tamanhoFrase; i++)
             {
-                frase += TrocarLetra(_frase[i]);
+                frase += TrocarLetra(_fraseCriptografada[i]);
             }
             return frase;
         }
 
         public string Descriptografar(string strFrase)
-        {
-            string frase = string.Empty;
+        {                     
             for (int i = 0; i < _tamanhoFrase; i++)
             {
-                frase += TrocarLetra(strFrase[i]);
+                _fraseDescriptografada += TrocarLetra(strFrase[i]);
             }
-            return frase;
+            return _fraseDescriptografada;
         }        
     }
 }
