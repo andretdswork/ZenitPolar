@@ -24,21 +24,21 @@ namespace ZenitPolar
             return _keyZenite.Contains(char.ToLower(letra)) || _keyPolar.Contains(char.ToLower(letra));
         }
 
-        private int getPosicaoLetra(char letra, string palavra)
+        private int retornarPosicaoLetra(char letra, string palavra)
         {
-            return palavra.IndexOf(char.ToLower(letra)) == -1 ? 0 : palavra.IndexOf(char.ToLower(letra));
+            return palavra.IndexOf(letra) == -1 ? 0 : palavra.IndexOf(letra);
         }        
 
         private char TrocarLetra(char letra)
         {
-            int posicaoLetraZenit = getPosicaoLetra(letra, _keyZenite);
-            int posicaoLetraPolar = getPosicaoLetra(letra, _keyPolar);
+            int posicaoLetraZenit = retornarPosicaoLetra(letra, _keyZenite);
+            int posicaoLetraPolar = retornarPosicaoLetra(letra, _keyPolar);
             return ExisteLetra(letra) ? (posicaoLetraPolar >= 0 ? _keyZenite[posicaoLetraPolar] : _keyPolar[posicaoLetraZenit]) : letra;
         }
 
         private char TrocarLetraParaDescriptografia(char letra)
         {
-            int posicaoLetraPolar = getPosicaoLetra(letra, _keyPolar);
+            int posicaoLetraPolar = retornarPosicaoLetra(letra, _keyPolar);
             return ExisteLetra(letra) ? _keyPolar[posicaoLetraPolar] : letra;
         }
 
