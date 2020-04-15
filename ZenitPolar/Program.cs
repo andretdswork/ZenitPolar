@@ -10,9 +10,9 @@ namespace ZenitPolar
     {
         static void Main(string[] args)
         {
-            Criptografia cripto = new Criptografia("263738");
-            string fraseCriptografada = cripto.Criptografar();
-            Console.WriteLine(fraseCriptografada);            
+            Criptografia cripto = new Criptografia("A4n3d2r1et.()@Atds");                   
+            Console.WriteLine(cripto.Criptografar());
+            Console.WriteLine(cripto.Descriptografar());
             Console.ReadLine();
         }
     }

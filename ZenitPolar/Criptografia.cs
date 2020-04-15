@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace ZenitPolar
 {
-    public class Criptografia
+    public class Criptografia : ICriptografia
     {        
         private string _fraseCriptografada;        
         private int _tamanhoFrase;
-        private string _strZenite = @"qazwsxedcrfvtgbyhnujmik,ol.pç;/~´[]=-0987654321'`{^}?:><\\|+_!@";
-        private string _strPolar =  @"+_)(*&¨%$#@!'{}?:^`><pç;ol.ik,ujmyhntgbrfvedcwsxqaz!@#$%¨&*08_+";        
+        private string _keyZenite = @"+_)(*&¨%$#@!'zxcvbnm,.;/asdfghjklç~][´poiuyAtrewq1234567890-='`{}^?:><B";
+        private string _keyPolar =  @"1qaz2wsx3edc4rfv5tgb6yhn7ujm8ik,9ol.;çp0-´B~/][=<>:?}^{`+_)(*&¨%$#@!'\A";        
 
         public Criptografia(string frase)
         {
@@ -21,7 +21,7 @@ namespace ZenitPolar
         
         private bool ExisteLetra(char letra)
         {
-            return _strZenite.Contains(char.ToLower(letra)) || _strPolar.Contains(char.ToLower(letra));
+            return _keyZenite.Contains(char.ToLower(letra)) || _keyPolar.Contains(char.ToLower(letra));
         }
 
         private int getPosicaoLetra(char letra, string palavra)
@@ -31,17 +31,34 @@ namespace ZenitPolar
 
         private char TrocarLetra(char letra)
         {
-            int posicaoLetraZenit = getPosicaoLetra(letra, _strZenite);
-            int posicaoLetraPolar = getPosicaoLetra(letra, _strPolar);
-            return ExisteLetra(letra) ? (posicaoLetraPolar >= 0 ? _strZenite[posicaoLetraPolar] : _strPolar[posicaoLetraZenit]) : letra;
+            int posicaoLetraZenit = getPosicaoLetra(letra, _keyZenite);
+            int posicaoLetraPolar = getPosicaoLetra(letra, _keyPolar);
+            return ExisteLetra(letra) ? (posicaoLetraPolar >= 0 ? _keyZenite[posicaoLetraPolar] : _keyPolar[posicaoLetraZenit]) : letra;
         }
 
+        private char TrocarLetraParaDescriptografia(char letra)
+        {
+            int posicaoLetraPolar = getPosicaoLetra(letra, _keyPolar);
+            return ExisteLetra(letra) ? _keyPolar[posicaoLetraPolar] : letra;
+        }
+
+
         public string Criptografar()
-        {            
+        {
             string frase = string.Empty;
             for (int i = 0; i < _tamanhoFrase; i++)
             {
                 frase += TrocarLetra(_fraseCriptografada[i]);
+            }
+            return frase;
+        }
+
+        public string Descriptografar()
+        {
+            string frase = string.Empty;
+            for (int i = 0; i < _tamanhoFrase; i++)
+            {
+                frase += TrocarLetraParaDescriptografia(_fraseCriptografada[i]);
             }
             return frase;
         }
