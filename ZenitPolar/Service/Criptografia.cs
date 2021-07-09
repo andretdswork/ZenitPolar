@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace ZenitPolar
+namespace ZenitPolar.Service
 {
     public class Criptografia : ICriptografia
     {        

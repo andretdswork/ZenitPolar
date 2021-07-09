@@ -44,8 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Criptografia.cs" />
-    <Compile Include="ICriptografia.cs" />
+    <Compile Include="Service\Criptografia.cs" />
+    <Compile Include="Service\ICriptografia.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

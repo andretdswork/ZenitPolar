@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ZenitPolar.Service;
 
 namespace ZenitPolar
 {
@@ -10,7 +7,7 @@ namespace ZenitPolar
     {
         static void Main(string[] args)
         {
-            Criptografia cripto = new Criptografia("A4n3d2r1et.()@Atds");                   
+            Criptografia cripto = new Criptografia("am43@!asd54.,()23[/#2");                   
             Console.WriteLine(cripto.Criptografar());
             Console.WriteLine(cripto.Descriptografar());
             Console.ReadLine();
