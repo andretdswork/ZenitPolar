@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Service\Criptografia.cs" />
+    <Compile Include="Service\ZenitPolarCripto.cs" />
     <Compile Include="Service\ICriptografia.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
