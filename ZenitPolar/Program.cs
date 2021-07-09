@@ -7,7 +7,7 @@ namespace ZenitPolar
     {
         static void Main(string[] args)
         {
-            ZenitPolarCripto cripto = new Criptografia("am43@!asd54.,()23[/#2");
+            Criptografia cripto = new Criptografia("am43@!asd54.,()23[/#2");
             Console.WriteLine(cripto.Criptografar());
             Console.WriteLine(cripto.Descriptografar());
             Console.ReadLine();
