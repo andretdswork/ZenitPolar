@@ -4,10 +4,11 @@ namespace ZenitPolar.Service
 {
     public abstract class ZenitPolarCripto
     {
-        private string _keyZenite = @"+_)(*&¨%$#@!'zxcvbnm,.;/asdfghjklç~][´poiuyAtrewq1234567890-='`{}^?:><B";
-        private string _keyPolar = @"1qaz2wsx3edc4rfv5tgb6yhn7ujm8ik,9ol.;çp0-´B~/][=<>:?}^{`+_)(*&¨%$#@!'\A";
+        private string KEYS_ZENIT = @"+_)(*&¨%$#@!'zxcvbnm,.;/asdfghjklç~][´poiuyAtrewq1234567890-='`{}^?:><B";
+        private string KEYS_POLAR = @"1qaz2wsx3edc4rfv5tgb6yhn7ujm8ik,9ol.;çp0-´B~/][=<>:?}^{`+_)(*&¨%$#@!'\A";     
         private string _fraseCriptografada;
         private int _tamanhoFrase;
+        private string _fraseRetorno;
 
         protected ZenitPolarCripto(string fraseCriptografada)
         {
@@ -17,45 +18,42 @@ namespace ZenitPolar.Service
 
         protected string Criptografar()
         {
-            string frase = string.Empty;
+            _fraseRetorno = string.Empty;
             for (int i = 0; i < _tamanhoFrase; i++)
-            {
-                frase += TrocarLetra(_fraseCriptografada[i]);
-            }
-            return frase;
+                _fraseRetorno += TrocarLetra(_fraseCriptografada[i]);            
+
+            return _fraseRetorno;
         }
 
         protected string Descriptografar()
         {
-            string frase = string.Empty;
-            for (int i = 0; i < _tamanhoFrase; i++)
-            {
-                frase += TrocarLetraParaDescriptografia(_fraseCriptografada[i]);
-            }
-            return frase;
+            _fraseRetorno = string.Empty;
+            for (int i = 0; i < _tamanhoFrase; i++)            
+                _fraseRetorno += TrocarLetraParaDescriptografia(_fraseCriptografada[i]);
+            
+            return _fraseRetorno;
         }
 
         private char TrocarLetra(char letra)
         {
-            int posicaoLetraZenit = retornarPosicaoLetra(letra, _keyZenite);
-            int posicaoLetraPolar = retornarPosicaoLetra(letra, _keyPolar);
-            return ExisteLetra(letra) ? (posicaoLetraPolar >= 0 ? _keyZenite[posicaoLetraPolar] : _keyPolar[posicaoLetraZenit]) : letra;
+            int posicaoLetraZenit = retornarPosicaoLetra(letra, KEYS_ZENIT);
+            int posicaoLetraPolar = retornarPosicaoLetra(letra, KEYS_POLAR);
+            return ExisteLetra(letra) ? (posicaoLetraPolar >= 0 ? KEYS_ZENIT[posicaoLetraPolar] : KEYS_POLAR[posicaoLetraZenit]) : letra;
         }
 
-        private int retornarPosicaoLetra(char letra, string palavra)
-        {
-            return palavra.IndexOf(letra) == -1 ? 0 : palavra.IndexOf(letra);
-        }
+        private int retornarPosicaoLetra(char letra, string palavra) => 
+            palavra.IndexOf(letra) == -1 ? 0 : palavra.IndexOf(letra);
+        
 
-        private bool ExisteLetra(char letra)
-        {
-            return _keyZenite.Contains(char.ToLower(letra)) || _keyPolar.Contains(char.ToLower(letra));
-        }
+        private bool ExisteLetra(char letra) =>
+            KEYS_ZENIT.Contains(char.ToLower(letra)) || KEYS_POLAR.Contains(char.ToLower(letra));        
 
         private char TrocarLetraParaDescriptografia(char letra)
         {
-            int posicaoLetraPolar = retornarPosicaoLetra(letra, _keyPolar);
-            return ExisteLetra(letra) ? _keyPolar[posicaoLetraPolar] : letra;
+            int posicaoLetraPolar = retornarPosicaoLetra(letra, KEYS_POLAR);
+            return ExisteLetra(letra) ? KEYS_POLAR[posicaoLetraPolar] : letra;
         }
+
+        
     }
 }
